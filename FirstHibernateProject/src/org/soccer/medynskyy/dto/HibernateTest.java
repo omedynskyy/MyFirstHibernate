@@ -9,7 +9,6 @@ import org.hibernate.cfg.Configuration;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
-
 public class HibernateTest {
 
 	private static final Logger logger = Logger.getLogger(HibernateTest.class);
