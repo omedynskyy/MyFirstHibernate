@@ -1,0 +1,135 @@
+package org.javabrains.koushik.dto;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
+@Entity
+@Table(name = "USERS",schema="PIN")
+public class UserDetails {
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int userId;
+	// @Transient // do not save in DB
+	private String firstName;
+	private String lastName;
+	private String login;
+	private String password;
+	private String phonenumber;
+	private Date joinedDate;
+	private String description;
+	
+	/*
+	@ElementCollection
+	private Set<Address> listOfAddresses = new HashSet();
+	
+	public Set<Address> getListOfAddresses() {
+		return listOfAddresses;
+	}
+
+	public void setListOfAddresses(Set<Address> listOfAddresses) {
+		this.listOfAddresses = listOfAddresses;
+	}
+	
+	@Embedded
+	@AttributeOverrides({
+	@AttributeOverride (name="street",column=@Column(name="HOME_STREET")),
+	@AttributeOverride (name="city",column=@Column(name="HOME_CITY")),
+	@AttributeOverride (name="state",column=@Column(name="HOME_STATE")),
+	@AttributeOverride (name="pincode",column=@Column(name="HOME_PINCODE"))
+	})
+	private Address homeaddress;
+	
+	@Embedded
+	@AttributeOverrides({
+	@AttributeOverride (name="street",column=@Column(name="OFFICE_STREET")),
+	@AttributeOverride (name="city",column=@Column(name="OFFICE_CITY")),
+	@AttributeOverride (name="state",column=@Column(name="OFFICE_STATE")),
+	@AttributeOverride (name="pincode",column=@Column(name="OFFICE_PINCODE"))
+	})
+	private Address officeaddress;
+	*/
+	
+	
+	public Date getJoinedDate() {
+		return joinedDate;
+	}
+
+	public void setJoinedDate(Date joinedDate) {
+		this.joinedDate = joinedDate;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
+	public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+}

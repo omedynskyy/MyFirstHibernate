@@ -1,0 +1,118 @@
+package org.soccer.medynskyy.dto;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Scanner;
+
+import org.apache.log4j.Appender;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+public class UserLoader {
+	
+	private static final Logger logger = Logger.getLogger(UserLoader.class);
+
+	private ArrayList<Locations> myLocations = new ArrayList<Locations>();
+	private ArrayList<UserDetails> myUsers = new ArrayList<UserDetails>();
+
+	public void addAppender(Appender appender) {
+	}
+
+	public ArrayList<UserDetails> getMyUsers() {
+		return myUsers;
+	}
+
+	public void setMyUsers(ArrayList<UserDetails> myUsers) {
+		this.myUsers = myUsers;
+	}
+
+	public ArrayList<Locations> getMyLocations() {
+		return myLocations;
+	}
+
+	public void setMyLocations(ArrayList<Locations> myLocations) {
+		this.myLocations = myLocations;
+	}
+
+	//@SuppressWarnings("null")
+	public UserLoader(String fileName)	throws FileNotFoundException {
+	
+    	logger.debug("Running of UserLoader Constructor");
+    //	Appender newAppender = null;
+    //	newAppender.setName("NewAppenderFromJava");
+	//	logger.addAppender(newAppender);
+	//	Level level 
+    	//logger.setLevel(level);
+
+    	
+ /*	
+log4j.appender.file=org.apache.log4j.RollingFileAppender
+log4j.appender.file.File=C:\\loging.log
+log4j.appender.file.MaxFileSize=1MB
+log4j.appender.file.MaxBackupIndex=1
+log4j.appender.file.layout=org.apache.log4j.PatternLayout
+log4j.appender.file.layout.ConversionPattern=%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n
+*/
+    	
+    	
+    	
+    	
+		FileReader myFile = new FileReader(new File(fileName));
+		BufferedReader Buff = new BufferedReader(myFile);
+		String line = "";
+		Scanner inputScanner = new Scanner(Buff);
+
+		String firstName;
+		String lastName;
+		String email;
+		String city;
+		String country;
+		String zip;
+		String rating;
+		int i = 0;
+		while (inputScanner.hasNextLine()) {
+			line = inputScanner.nextLine();
+			// aleksandr;medynskyy;alexxx@mail.ru;Kyiv;Ukraine;03092
+			// aleksandr;medynskyy;aleksandr.medynskyy@gmail.com;;Ukraine;03092
+			// aleksandr;medynskyy;durdom@mail.ru;;Ukraine;03092
+
+			Locations homeLocation = new Locations();
+			UserDetails userInfo = new UserDetails();
+			
+			firstName = (String) line.split(";")[0];
+			lastName = (String) (line.split(";")[1]);
+			email = (String) (line.split(";")[2]);
+			city = (String) line.split(";")[3];
+			country = (String) (line.split(";")[4]);
+			zip = (String) (line.split(";")[5]);
+			rating = (String) (line.split(";")[6]);
+			System.out.println(city);
+			homeLocation.setCity(city);
+			homeLocation.setCountry(country);
+			homeLocation.setZip(zip);
+			myLocations.add(i, homeLocation);
+			//userInfo.setUserName(userName)
+			userInfo.setFirstName(firstName);
+			userInfo.setLastName(lastName);
+			userInfo.setLogin(email);
+			userInfo.setRating(rating);
+			myUsers.add(i,userInfo);
+			
+			i++;
+		}
+
+		try {
+			Buff.close();
+			myFile.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+}
