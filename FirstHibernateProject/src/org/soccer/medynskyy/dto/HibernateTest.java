@@ -19,8 +19,9 @@ public class HibernateTest {
 		logger.log(Level.ERROR, "Error Level");
 		
 		//LocationsLoader ldr = new LocationsLoader("D:\\users\\oleksandr.medynskyi\\workspace\\FirstHibernateProject\\src\\locations.txt");
-		LocationsLoader ldr = new LocationsLoader("C:\\Documents and Settings\\dev01\\workspace\\FirstHibernateProject\\src\\locations.txt");
-		
+		//LocationsLoader ldr = new LocationsLoader("C:\\Documents and Settings\\dev01\\workspace\\FirstHibernateProject\\src\\locations.txt");
+		LocationsLoader ldr = new LocationsLoader("C:\\projects\\MyFirstHibernateLocal\\FirstHibernateProject\\src\\locations.txt");
+
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		Session session = sessionFactory.openSession();
 
